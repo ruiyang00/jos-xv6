@@ -13,8 +13,8 @@ https://pdos.csail.mit.edu/6.828/2018/schedule.html
 We will now dive into a bit more detail about how a PC starts up.
 A PC's physical address space is hard-wired to have the following general layout:<br /> 
 <pre>
-+------------------+  <- 0xFFFFFFFF (4GB) <br /> 
-|      32-bit      |<br /> 
++------------------+  <- 0xFFFFFFFF (4GB) 
+|      32-bit      |
 |  memory mapped   |<br /> 
 |     devices      |<br /> 
 |                  |<br /> 
