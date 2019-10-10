@@ -12,7 +12,7 @@ https://pdos.csail.mit.edu/6.828/2018/schedule.html
 # The PC's Physical Address Space
 We will now dive into a bit more detail about how a PC starts up.
 A PC's physical address space is hard-wired to have the following general layout:<br /> 
-
+<pre>
 +------------------+  <- 0xFFFFFFFF (4GB) <br /> 
 |      32-bit      |<br /> 
 |  memory mapped   |<br /> 
@@ -43,7 +43,7 @@ A PC's physical address space is hard-wired to have the following general layout
 |                  |<br /> 
 +------------------+  <- 0x00000000<br /> 
 <br />  
-
+</pre>
 he first PCs, which were based on the 16-bit Intel 8088 processor, were only capable of addressing 1MB of physical memory. The physical address space of an early PC would therefore start at 0x00000000 but end at 0x000FFFFF instead of 0xFFFFFFFF. The 640KB area marked "Low Memory" was the only random-access memory (RAM) that an early PC could use; in fact the very earliest PCs only could be configured with 16KB, 32KB, or 64KB of RAM!
 
 The 384KB area from 0x000A0000 through 0x000FFFFF was reserved by the hardware for special uses such as video display buffers and firmware held in non-volatile memory. The most important part of this reserved area is the Basic Input/Output System (BIOS), which occupies the 64KB region from 0x000F0000 through 0x000FFFFF. In early PCs the BIOS was held in true read-only memory (ROM), but current PCs store the BIOS in updateable flash memory. The BIOS is responsible for performing basic system initialization such as activating the video card and checking the amount of memory installed. After performing this initialization, the BIOS loads the operating system from some appropriate location such as floppy disk, hard disk, CD-ROM, or the network, and passes control of the machine to the operating system.
