@@ -5,6 +5,21 @@ https://pdos.csail.mit.edu/6.828/2018/schedule.html
   * Part 1: PC Bootstrap
   * Part 2: The Boot Loader
   * Part 3: The Kernel
+# Lab nodes
+* Physical Address Space(figure below)
+  * Low Memory = RAM (reserved starts from the 0x00000000 to the ram storeage)
+  * the second area about 384KB was reserved by the hardware uses(BIOS is inside this area)
+  * BIOS = PC's basic input-output system(64KB region updatable)
+    * BIOS is a software stored on a flash memory chip. In a PC, the BIOS is embedded on the motherboard.
+    * controlls PC's booting process
+    * BIOS initializes hardware divices and checking the memory installed.
+    * BIOS loads the operating system from disk/CD/newtwork
+    * Lastly, BIOS pass the control of the machine to the perating system
+  * there will be unused memory because 32-bit architecture and second hole for 64-bit architecture becuase the BIOS need to be extended inorder to read 16-bit and 32-bit respectively for 32-bit and 64-bit archt.
+
+
+* The ROM(read-only-memory) BIOS 
+  
 
 
 
