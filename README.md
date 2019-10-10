@@ -11,38 +11,40 @@ https://pdos.csail.mit.edu/6.828/2018/schedule.html
 
 # The PC's Physical Address Space
 We will now dive into a bit more detail about how a PC starts up.
- A PC's physical address space is hard-wired to have the following general layout:
+A PC's physical address space is hard-wired to have the following general layout:<br /> 
 
-+------------------+  <- 0xFFFFFFFF (4GB)
-|      32-bit      |
-|  memory mapped   |
-|     devices      |
-|                  |
-/\/\/\/\/\/\/\/\/\/\
-
-/\/\/\/\/\/\/\/\/\/\
-|                  |
-|      Unused      |
-|                  |
-+------------------+  <- depends on amount of RAM
-|                  |
-|                  |
-| Extended Memory  |
-|                  |
-|                  |
-+------------------+  <- 0x00100000 (1MB)
-|     BIOS ROM     |
-+------------------+  <- 0x000F0000 (960KB)
-|  16-bit devices, |
-|  expansion ROMs  |
++------------------+  <- 0xFFFFFFFF (4GB) <br /> 
+|      32-bit      |<br /> 
+|  memory mapped   |<br /> 
+|     devices      |<br /> 
+|                  |<br /> 
+/\/\/\/\/\/\/\/\/\/\<br /> 
+<br /> 
+/\/\/\/\/\/\/\/\/\/\<br /> 
+|                  |<br /> 
+|      Unused      |<br /> 
+|                  |<br /> 
++------------------+  <- depends on amount of RAM <br /> 
+|                  |<br /> 
+|                  |<br /> 
+| Extended Memory  |<br /> 
+|                  |<br /> 
+|                  |<br /> 
++------------------+  <- 0x00100000 (1MB)<br /> 
+|     BIOS ROM     |<br /> 
++------------------+  <- 0x000F0000 (960KB)<br /> 
+|  16-bit devices, |<br /> 
+|  expansion ROMs  |<br /> 
 +------------------+  <- 0x000C0000 (768KB)
-|   VGA Display    |
-+------------------+  <- 0x000A0000 (640KB)
-|                  |
-|    Low Memory    |
-|                  |
-+------------------+  <- 0x00000000
-The first PCs, which were based on the 16-bit Intel 8088 processor, were only capable of addressing 1MB of physical memory. The physical address space of an early PC would therefore start at 0x00000000 but end at 0x000FFFFF instead of 0xFFFFFFFF. The 640KB area marked "Low Memory" was the only random-access memory (RAM) that an early PC could use; in fact the very earliest PCs only could be configured with 16KB, 32KB, or 64KB of RAM!
+|   VGA Display    |<br /> 
++------------------+  <- 0x000A0000 (640KB)<br /> 
+|                  |<br /> 
+|    Low Memory    |<br /> 
+|                  |<br /> 
++------------------+  <- 0x00000000<br /> 
+<br />  
+
+he first PCs, which were based on the 16-bit Intel 8088 processor, were only capable of addressing 1MB of physical memory. The physical address space of an early PC would therefore start at 0x00000000 but end at 0x000FFFFF instead of 0xFFFFFFFF. The 640KB area marked "Low Memory" was the only random-access memory (RAM) that an early PC could use; in fact the very earliest PCs only could be configured with 16KB, 32KB, or 64KB of RAM!
 
 The 384KB area from 0x000A0000 through 0x000FFFFF was reserved by the hardware for special uses such as video display buffers and firmware held in non-volatile memory. The most important part of this reserved area is the Basic Input/Output System (BIOS), which occupies the 64KB region from 0x000F0000 through 0x000FFFFF. In early PCs the BIOS was held in true read-only memory (ROM), but current PCs store the BIOS in updateable flash memory. The BIOS is responsible for performing basic system initialization such as activating the video card and checking the amount of memory installed. After performing this initialization, the BIOS loads the operating system from some appropriate location such as floppy disk, hard disk, CD-ROM, or the network, and passes control of the machine to the operating system.
 
