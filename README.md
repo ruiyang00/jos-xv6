@@ -4,7 +4,7 @@ https://pdos.csail.mit.edu/6.828/2018/schedule.html
 * Lab 1: Booting a PC
   * Part 1: PC Bootstrap
   * Part 2: The Boot Loader
-  * Part 3: The Kernel
+  * Part 3: The Kernel 
 # Lab nodes
 * Physical Address Space(figure below)
   * Low Memory = RAM (reserved starts from the 0x00000000 to the ram storeage)
@@ -18,8 +18,10 @@ https://pdos.csail.mit.edu/6.828/2018/schedule.html
   * there will be unused memory because 32-bit architecture and second hole for 64-bit architecture becuase the BIOS need to be extended inorder to read 16-bit and 32-bit respectively for 32-bit and 64-bit archt.
 
 
-* The ROM(read-only-memory) BIOS 
-  
+  * The ROM(read-only-memory) BIOS 
+    * The first thing that a Intel 8088 processor does is jump fron cs = 0xfoo to ip = 0xe05b (BIOS starts from 0x000f0000, this makes sure that BIOS always gets control of the machine first after power-up, this is crucial because on power-up there is no other software anywhere in RAM)
+* The Boot Loader
+  * if the disk is bootable, the BIOS will load the first sector(512 byte into memory at physical addresses 0x7c00- 0x7dff)
 
 
 
