@@ -102,8 +102,13 @@ boot_alloc(uint32_t n)
 	// to a multiple of PGSIZE.
 	//
 	// LAB 2: Your code here.
+	result = nextfree;
+	nextfree = ROUNDUP(nextfree+n, PGSIZE);
+	if((unit32_t)nextfree - KERNBASE > (npages*PGSIZE))
+		panic("Out of memory!\n");
+	
 
-	return NULL;
+	return result;
 }
 
 // Set up a two-level page table:
@@ -117,7 +122,7 @@ boot_alloc(uint32_t n)
 // Above ULIM the user cannot read or write.
 void
 mem_init(void)
-{
+
 	uint32_t cr0;
 	size_t n;
 
@@ -128,7 +133,7 @@ mem_init(void)
 	panic("mem_init: This function is not finished\n");
 
 	//////////////////////////////////////////////////////////////////////
-	// create initial page directory.
+// create initial page directory.
 	kern_pgdir = (pde_t *) boot_alloc(PGSIZE);
 	memset(kern_pgdir, 0, PGSIZE);
 
