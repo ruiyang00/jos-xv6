@@ -259,10 +259,22 @@ page_init(void)
 	// NB: DO NOT actually touch the physical memory corresponding to
 	// free pages!
 	size_t i;
+	page_free_list = NULL;
+	int num_alloc = ((uint32_t)boot_alloc(0) - KERNBASE) / PGSIZE;
+	int num_iohole = 96;
 	for (i = 0; i < npages; i++) {
-		pages[i].pp_ref = 0;
-		pages[i].pp_link = page_free_list;
-		page_free_list = &pages[i];
+		if(i = 0) {
+			pages[i].pp_ref = 1;
+			
+		} else if (i >= npages_basemem && i < npages_basemem + num_iohole + num_alloc) {
+			pages[i].pp_ref = 1;
+
+		} else {
+			pages[i].pp_ref = 0;
+			pages[i].pp_link = page_free_list;
+			page_free_list = &pages[i];	
+		}
+
 	}
 }
 
